@@ -5,13 +5,13 @@ namespace hilo{
 
     //player: asks for input for guess, allocate points-------------------------------------------------------
     public class Player{
-        // asks user to guess if higher or lower
+        // asks user to guess if higher or lower, returns the input regardless of error
         public string turn(){
             Console.Write("Higher or lower? [h/l]");
             string input = Console.ReadLine();
             return input;
         }
-        // adds/subtracts total points considering whether the guess was right
+        // adds/subtracts to total points considering whether the guess was right and returns the total number of points after
         public int pointsEarned(bool correct, int pointsTotal){
             int points = 0;
             if(correct){
@@ -27,7 +27,7 @@ namespace hilo{
 
     //card: generate random number 1-13-------------------------------------------------------
     public class Card{
-        //generates randon number between 1-13
+        //generates randon number between 1-13 and returns it
         public int newCard(){
             Random r = new Random();
             int newCard = r.Next(1,13);
@@ -36,7 +36,7 @@ namespace hilo{
     }
     //dealer :compare cards, asks if want to continue-------------------------------------------------
     public class Dealer{
-        //uses the card seen, next card, and the guess to verify if the guess the player was made was right
+        //uses the card seen, next card, and the guess to verify if the guess the player was made was right, returns a boolian
         public bool comparison( int upCard, int downCard, string guess){
             string answer = "na";
             bool correct = false;
@@ -56,10 +56,11 @@ namespace hilo{
             return correct;
             ;
         }
-        //asks the player if they want to continue to play
+        //asks the player if they want to continue to play, returns a boolian
         public bool keepPlay(){
             bool play = true;
             string input = "na";
+            //while loop is to verify valid input
             while(input != "y" && input != "n"){
                 Console.Write("Play again? [y/n]");
                 input = Console.ReadLine();
@@ -77,7 +78,7 @@ namespace hilo{
             return play;
         }
     }
-    //main: conducts the program
+    //main: conducts the program --------------------------------------------------------------------------------
     static void Main(){
         Program pr = new Program();
         Dealer d = new Dealer();
@@ -96,6 +97,7 @@ namespace hilo{
         Console.Write("The card is: ");
         upCard = c.newCard();
         Console.WriteLine(upCard);
+        //while loop is used to make sure input is valid
         while(guess != "l" && guess != "h"){
             guess = pl.turn();
             if(guess != "l" && guess != "h"){
