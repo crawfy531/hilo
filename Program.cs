@@ -1,14 +1,17 @@
 ﻿
-    //player: guess, points, play again : dealer-------------------------------------------------------
+    
 namespace hilo{
     class Program{
 
+    //player: asks for input for guess, allocate points-------------------------------------------------------
     public class Player{
+        // asks user to guess if higher or lower
         public string turn(){
             Console.Write("Higher or lower? [h/l]");
             string input = Console.ReadLine();
             return input;
         }
+        // adds/subtracts total points considering whether the guess was right
         public int pointsEarned(bool correct, int pointsTotal){
             int points = 0;
             if(correct){
@@ -22,17 +25,18 @@ namespace hilo{
         }
     }
 
-        //card: generate random number 1-13 : dealer-------------------------------------------------------
+    //card: generate random number 1-13-------------------------------------------------------
     public class Card{
-
+        //generates randon number between 1-13
         public int newCard(){
             Random r = new Random();
             int newCard = r.Next(1,13);
             return newCard;
         }
     }
-    //dealer : draws cards, compare cards, asks for input, give/receive points, end game: player,card
+    //dealer :compare cards, asks if want to continue-------------------------------------------------
     public class Dealer{
+        //uses the card seen, next card, and the guess to verify if the guess the player was made was right
         public bool comparison( int upCard, int downCard, string guess){
             string answer = "na";
             bool correct = false;
@@ -52,6 +56,7 @@ namespace hilo{
             return correct;
             ;
         }
+        //asks the player if they want to continue to play
         public bool keepPlay(){
             bool play = true;
             string input = "na";
@@ -72,6 +77,7 @@ namespace hilo{
             return play;
         }
     }
+    //main: conducts the program
     static void Main(){
         Program pr = new Program();
         Dealer d = new Dealer();
