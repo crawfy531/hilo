@@ -91,11 +91,12 @@ namespace hilo{
         int upCard = 0;
         int downCard = 0;
         bool correct = false;
+        upCard = c.newCard();
 
         while(play == true){
         guess = "na";
         Console.Write("The card is: ");
-        upCard = c.newCard();
+
         Console.WriteLine(upCard);
         //while loop is used to make sure input is valid
         while(guess != "l" && guess != "h"){
@@ -115,6 +116,7 @@ namespace hilo{
             pointsTotal = 300;
         }
         play = d.keepPlay();
+        upCard =downCard;
         }
 
     }
